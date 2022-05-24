@@ -7,8 +7,8 @@ module.exports = sequelize.define('track',{
         type: Sequelize.INTEGER,
         primaryKey:true
     },
-    title:{
-        field:'Title',
+    name:{
+        field:'Name',
         type:Sequelize.STRING
     }
 },{

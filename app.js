@@ -19,10 +19,11 @@ const app = express();
  });
 
  Playlist.belongsToMany(Track,{
-    through: 'playlist_track',
-    foreignKey: 'PlaylistId',
-    timesstamps:false
- })
+    through:'playlist_track',
+    foreignKey:"PlaylistId",
+    timestamps: false
+ });
+
 
 app.get('/api/playlists',function(request,response){
 let filter = {};
@@ -45,9 +46,10 @@ let {q} = request.query;
 
 app.get('/api/playlists/:id',function(request,response){
     let { id } = request.params;
-    Playlist.findByPk(id,{
-    
-    }).then((playlist) => {
+    Playlist.findByPk(id, {
+        include: [Track]
+    })
+    .then((playlist) => {
         if (playlist){
             response.json(playlist);
         } else {
@@ -81,5 +83,6 @@ app.get('/api/albums/:id',function(request,response){
         }
     });
 });
+
 
 app.listen(8000);
