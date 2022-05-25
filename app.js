@@ -32,6 +32,11 @@ app.use(bodyParser.json());
     timestamps: false
  });
 
+ app.delete('/api/playlists/:id', function(request,response){
+    let { id }= request.params;
+    
+ });
+
 app.post('/api/artists',function(request,response){
     Artist.create({
         name:request.body.name
