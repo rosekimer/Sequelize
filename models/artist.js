@@ -21,8 +21,8 @@ module.exports = sequelize.define('artist',{
                 nsg:'Name must only contain letters'
             },
             len:{
-                args:[2,10],
-                msg:'Name must be between 2 and 10 characters'
+                args:[2,20],
+                msg:'Name must be between 2 and 20 characters'
             }
         }
     }

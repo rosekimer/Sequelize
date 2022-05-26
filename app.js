@@ -34,7 +34,23 @@ app.use(bodyParser.json());
 
  app.delete('/api/playlists/:id', function(request,response){
     let { id }= request.params;
-    
+
+    Playlist
+    .findByPk(id)
+        .then((playlist) => {
+            if (playlist){
+                playlist.setTracks([]).then(() =>{
+                    return playlist.destroy();
+                  });
+            } else {
+                return Promise.reject();
+            }
+       })
+       .then(() => {
+        response.status(204).send();
+       },() => {
+        response.status(404).send();
+       });
  });
 
 app.post('/api/artists',function(request,response){
